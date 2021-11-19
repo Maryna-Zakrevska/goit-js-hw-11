@@ -4,6 +4,7 @@ function getRefs() {
     gallery: document.querySelector(".gallery"),
     searchBtn: document.querySelector(".search-button"),
     loadMoreBtn: document.querySelector(".load-more"),
+    searchInput: document.querySelector("[type='text']"),
   };
 }
 
