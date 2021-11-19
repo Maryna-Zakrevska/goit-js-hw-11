@@ -16,7 +16,6 @@ async function getImages() {
       safesearch: 'true',
       page: settings.pageNumber,
       per_page: 40,
-      https: true,
     },
   };
   try {
