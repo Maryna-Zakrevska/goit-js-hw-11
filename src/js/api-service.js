@@ -20,7 +20,7 @@ async function getImages() {
       per_page: 40,
     },
   };
-  try {
+ /*  try {
     const {data} = await axios(axiosConfig);
     console.log(data);
     settings.pageNumber += 1;
@@ -28,7 +28,7 @@ async function getImages() {
     return data;
   } catch (error) {
     console.log(error);
-  }
+  } */
 }
 
 
