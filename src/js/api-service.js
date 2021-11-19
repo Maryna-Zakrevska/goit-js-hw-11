@@ -16,7 +16,7 @@ async function getImages() {
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: 'true',
-      page: settings.pageNumber,
+      page: `${settings.pageNumber}`,
       per_page: 40,
     },
   };
