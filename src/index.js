@@ -63,6 +63,7 @@ function neededProperties({
 }) {
   return `
   <li class="gallery__item">
+  <div class="gallery__card">
   <a class="gallery__link" href='${largeImageURL}'>
   <div class="gallery__photo-thumb">
   <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" decoding="async"/>
@@ -82,6 +83,7 @@ function neededProperties({
       <b>Downloads</b> <span>${downloads}</span>
     </li>
   </ul>
+  </div>
 </li>`;
 }
 
