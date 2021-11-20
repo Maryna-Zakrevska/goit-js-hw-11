@@ -1,4 +1,4 @@
-import "./sass/styles.scss";
+import "./sass/main.scss";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import axios from "axios";
 import SimpleLightbox from "simplelightbox";
@@ -63,25 +63,25 @@ function neededProperties({
 }) {
   return `
   <li class="gallery__item">
-  <div class="gallery__photo--thumb">
   <a class="gallery__link" href='${largeImageURL}'>
+  <div class="gallery__photo-thumb">
   <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" decoding="async"/>
-  </a>
-  <div class="gallery__info">
-    <p class="gallery__info--item">
-      <b>Likes</b> <span>${likes}</span>
-    </p>
-    <p class="gallery__info--item">
-      <b>Views</b> <span>${views}</span>
-    </p>
-    <p class="gallery__info--item">
-      <b>Comments</b> <span>${comments}</span>
-    </p>
-    <p class="gallery__info--item">
-      <b>Downloads</b> <span>${downloads}</span>
-    </p>
   </div>
-</div>
+  </a>
+  <ul class="gallery__info">
+    <li class="gallery__info-item">
+      <b>Likes</b> <span>${likes}</span>
+    </li>
+    <li class="gallery__info-item">
+      <b>Views</b> <span>${views}</span>
+    </li>
+    <li class="gallery__info-item">
+      <b>Comments</b> <span>${comments}</span>
+    </li>
+    <li class="gallery__info-item">
+      <b>Downloads</b> <span>${downloads}</span>
+    </li>
+  </ul>
 </li>`;
 }
 
