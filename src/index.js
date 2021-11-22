@@ -8,6 +8,9 @@ import { settings } from "./js/api-service";
 import getImages from "./js/api-service";
 
 const refs = getRefs();
+
+refs.main.style.paddingTop = `${refs.header.clientHeight + 20}px`;
+
 let modalGallery = null;
 
 refs.searchForm.addEventListener("submit", onRequestImages);
@@ -29,14 +32,14 @@ async function onRequestImages(event) {
     renderGallery(hits);
     Notify.success(`Hooray! We found ${totalHits} images.`);
     refs.loadMoreBtn.classList.remove("is-hidden");
-    settings.pageNumber += 1;
     const perPage = 40;
-    const totalPages = totalHits / perPage;
-    if (totalPages <= settings.pageNumber) {
-      refs.loadMoreBtn.classList.add("is-hidden");
-      Notify.info("We're sorry, but you've reached the end of search results.");
-    }
     modalGallery = modalInit(".gallery a");
+    if (totalHits / perPage < settings.pageNumber) {
+      refs.loadMoreBtn.classList.add("is-hidden");
+      return Notify.info("We're sorry, but you've reached the end of search results.");
+    }
+
+    settings.pageNumber += 1;
   } catch (error) {
     console.log(error);
   } finally {
@@ -88,12 +91,18 @@ function neededProperties({
 }
 
 refs.loadMoreBtn.addEventListener("click", onLoadMoreImages);
+
 async function onLoadMoreImages(event) {
   refs.loadMoreBtn.classList.add("is-hidden");
-  const { hits } = await getImages();
+  const { hits, totalHits } = await getImages();
   renderGallery(hits);
   modalGallery.refresh();
   smoothScroll();
+  const perPage = 40;
+  if (totalHits / perPage < settings.pageNumber) {
+    refs.loadMoreBtn.classList.add("is-hidden");
+    return Notify.info("We're sorry, but you've reached the end of search results.");
+  }
   refs.loadMoreBtn.classList.remove("is-hidden");
   settings.pageNumber += 1;
 }
