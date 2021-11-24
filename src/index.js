@@ -21,6 +21,12 @@ async function onRequestImages(event) {
   try {
     settings.userQuery = refs.searchInput.value.trim();
     settings.pageNumber = 1;
+
+    if (settings.userQuery === "") {
+      Notify.info("Please, fill in the input field");
+      return;
+    }
+
     const { hits, totalHits } = await getImages();
     refs.gallery.innerHTML = "";
 
